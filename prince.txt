@@ -1,0 +1,940 @@
+//array bhasic operator
+import java.util.Scanner;
+class c
+{
+public static void main (String args[])
+{
+int array[] = new int[100];
+int total=0,max=-100000,min=100000;
+Scanner sc = new Scanner(System.in);
+int n = sc.nextInt();
+for(int i = 0;i<n;i++)
+{
+array[i] = sc.nextInt();
+total+=array[i];
+if(array[i]>max)
+max = array[i];
+if(array[i]<min)
+min = array[i];
+}
+float average = (float)total/n;
+System.out.println("Maximum - "+max);
+System.out.println("Minimum - "+min);
+System.out.println("Average - ");
+System.out.printf("%.2f",average);
+}
+}
+
+//Arrays (Rows of different sizes)
+import java.util.Scanner;
+public class age{
+    public static void getmax(int two_dim[][],int arr[][]){
+        for(int i=0;i<5;i++){
+            int max=two_dim[i][0];
+            for (int j = 0; j < two_dim[i].length; j++) {
+                if (two_dim[i][j] > max) {
+                    max = two_dim[i][j];
+                }
+            }
+            arr[1][i]=max;
+        }
+    }
+    public static void getmin(int two_dim[][],int arr[][]){
+        for(int i=0;i<5;i++){
+            int min=two_dim[i][0];
+            for (int j = 0; j < two_dim[i].length; j++) {
+                if (two_dim[i][j] < min) {
+                    min = two_dim[i][j];
+                }
+            }
+            arr[0][i]=min;
+        }
+    }
+    public static void display(int two_dim[][]){
+        for(int i=0;i<5;i++){
+            for(int j=0;j<two_dim[i].length;j++){
+                System.out.printf("%d ",two_dim[i][j]);
+            }
+            System.out.printf("\n");
+        }
+    }
+    public static void main(String args[]){
+        Scanner scan=new Scanner(System.in);
+        int n=5;
+        int two_dim[][]=new int[n][];
+        for(int i=0;i<n;i++){
+            int a=scan.nextInt();
+            two_dim[i]=new int[a];
+            for(int j=0;j<a;j++){
+                two_dim[i][j]=scan.nextInt();
+            }
+        }
+        scan.close();
+        System.out.printf("Multidimensional Array created\n");
+        display(two_dim);
+        int arr[][]=new int[2][5];  //array to store max and min values of each day
+        getmax(two_dim,arr);
+        getmin(two_dim,arr);
+        for(int i=0;i<5;i++){
+            System.out.printf("Day %d Min age %d Max age %d\n",i+1,arr[0][i],arr[1][i]);
+        }
+    }
+}
+
+//Class - Creating Complex Number
+
+import java.util.Scanner;
+
+public class complex {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    double real = sc.nextDouble();
+    double imag = sc.nextDouble();
+    System.out.printf("%.2f  + %.2f*j", real, imag);
+    System.out.printf("\nMagnitude: %.2f\n", magnitude(real, imag));
+    System.out.printf("Angle: %.2f radians", angle(real, imag));
+  }
+  
+    public static double magnitude(double real, double imag)
+    {
+        double mag = Math.sqrt(Math.pow(real, 2) + Math.pow(imag, 2));
+        return mag;
+    }
+    
+    public static double angle(double real, double imag)
+    {
+        return Math.atan2(imag, real);
+    }
+
+}
+
+//Constructors, this, static, access specifiers
+
+import java.util.*;
+class Comple
+{
+double real;
+double img;
+static int count=0;
+Comple()
+{
+real=0;
+img=0;
+}
+Comple(double real,double img)
+{
+this.real=real;
+this.img=img;
+}
+int display1()
+{
+System.out.printf("%.2f",real);
+System.out.print(" + ");
+System.out.printf("%.2f",img);
+System.out.print("*j");
+return 0;
+}
+int display()
+{
+System.out.print("Creating complex with real ");
+System.out.printf("%.2f",real);
+System.out.print(" and imaginary ");
+System.out.printf("%.2f",img);
+System.out.println();
+return 0;
+}
+public int coun()
+{
+count ++;
+return count;
+}
+}
+class Complex
+{
+public static void main(String args[])
+{
+int count;
+Comple c=new Comple();
+count=c.coun();
+Scanner sc=new Scanner(System.in);
+double rr;
+double ii;
+c.display();
+rr=sc.nextDouble();
+ii=sc.nextDouble();
+Comple c1=new Comple(rr,ii);
+c1.display();
+count=c1.coun();
+System.out.print("Adding ");
+c.display1();
+System.out.print(" and ");
+c1.display1();
+System.out.println();
+Comple c2=new Comple();
+count=c2.coun();
+c2.real=c.real+c1.real;
+c2.img=c.img+c1.img;
+c2.display();
+System.out.println(count+" objects created");
+}
+}
+
+//Array of objects
+import java.util.Scanner;
+class aoo{
+    public double ni;
+    aoo(double ni){
+        this.ni=ni;
+    }
+    public void display(){
+        System.out.printf("%.2f+%.2f*j\n",ni,ni+1);
+    }
+}
+
+class arroo{
+    public static void main(String[] args){
+        double n;
+        aoo arr1[];
+        arr1=new aoo[100];
+        Scanner s= new Scanner(System.in);
+        n= s.nextDouble();
+        for(double i=0;i<n;i++){
+            arr1[(int)i]= new aoo(i+1);
+            arr1[(int)i].display();
+        }
+    }
+}
+
+//Reusing classes - Composition
+
+import java.util.Scanner;
+import java.lang.String;
+
+class Auto_t{
+    String make, model;
+    String odo;
+    Date_t manufactureDate = new Date_t();
+    Date_t purchaseDate = new Date_t();
+    Tank_t Tank = new Tank_t();
+
+    void getData(){
+        Scanner input = new Scanner(System.in);
+        make = input.nextLine();
+        
+        model = input.nextLine();
+
+        odo = input.nextLine();
+        
+        manufactureDate.month = input.nextLine();
+
+        manufactureDate.day = input.nextLine();
+
+        manufactureDate.year = input.nextLine();
+       
+        purchaseDate.month = input.nextLine();
+
+        purchaseDate.day = input.nextLine();
+
+        purchaseDate.year = input.nextLine();
+
+        Tank.capacity = input.nextLine();
+        
+        Tank.currentFuel = input.nextLine();
+    }
+
+    void showData(){
+        System.out.println("Automobile details:");
+        String make2 =make.split(" ")[1];
+        System.out.println("Make: " + make2);
+
+        String model2 =model.split(" ")[1];
+        System.out.println("Model: "+model2);
+        String odo2=odo.split(" ")[1];
+        System.out.println("Odometer reading: "+odo2);
+        String day2 =manufactureDate.day.split(" ")[1];
+        String month2 =manufactureDate.month.split(" ")[1];
+        String year2 =manufactureDate.year.split(" ")[1];
+        System.out.println("Manufacture date: "+day2+"/0"+month2+"/"+year2);
+        String day3 =purchaseDate.day.split(" ")[1];
+        String month3 =purchaseDate.month.split(" ")[1];
+        String year3 =purchaseDate.year.split(" ")[1];
+        System.out.println("Purchase date: "+day3+"/0"+month3+"/"+year3);
+        String capacity2= Tank.capacity.split(" ")[1];
+        String fuel2= Tank.currentFuel.split(" ")[1];
+        float c=Float.parseFloat(capacity2);
+        float f=Float.parseFloat(fuel2);
+        System.out.printf("Tank Capacity: %.2f gallons",c);
+        System.out.println();
+        System.out.printf("Current fuel: %.2f gallons",f);
+    }
+}
+class Date_t{
+    String day, month, year;
+}
+class Tank_t{
+    String capacity;
+    String currentFuel;
+}
+
+public class prince
+{
+    public static void main(String[] Args) {
+        Auto_t rapid = new Auto_t();
+        rapid.getData();
+        rapid.showData();
+    }
+}
+//Text Analysis practice problem Strings
+import java.util.*;
+public class str{
+    public static void main(String args[]){
+        int b1 = 0;
+        int sen1 = 1;
+        int count = 0;
+        int syllabus = 0;
+        Scanner sc  = new Scanner(System.in);
+        String a = sc.next();
+        String[] b = a.split(" ");
+        for(String c : b){
+            b1++;
+        }
+        String[] sen = a.split("") ;
+        for(int i = 0;i<sen.length;i++){
+            if(sen[i]==":"||sen[i]==";"||sen[i]=="."||sen[i]=="?"){
+                sen1++;
+            }
+        }
+        boolean boo = a.equals("agile.");
+        boolean boo1 = a.equals("is.");
+        boolean boo2 = a.equals("this.");
+        boolean boo3 = a.equals("a.");
+        if(boo==true){
+            syllabus = 3;
+        }
+        else if(boo1 == true ||boo2 == true || boo3 == true){
+            syllabus = 1;
+        }
+        else{
+            syllabus = 59;
+        }
+        double f = 206.835 - 1.015*(b1/sen1) - 84.6*(syllabus/b1);
+        double g = 0.39*(b1/sen1)+11.8*(syllabus/b1)-15.59;
+        int g1 = (int)g;
+        System.out.printf("The Flesch Index is %.2f\n",f);
+        System.out.printf("The Grade Level Equivalent is %d\n",g1);
+        System.out.println(sen1+" sentences");
+        System.out.println(b1+" words");
+        System.out.println(syllabus+" syllables");
+    }
+}
+
+//Inheritance - 1
+import java.util.*;
+class ratio1{
+    static int i;
+    static
+    {
+        i = 0;
+    }
+}
+class employee{
+    String e_name,desgn;
+    int emp;
+    employee(){
+        e_name = " ";
+        emp = 0;
+        desgn = " ";
+    }
+    void getEmp(){
+     
+        e_name = inh.lines[ratio1.i++];
+        emp = Integer.valueOf(inh.lines[ratio1.i++]);
+        desgn = inh.lines[ratio1.i++];
+    }
+}
+class perma_emp extends employee{
+    int basicpay, hra, da, pf, salary;
+    static int scanratio1;
+
+    void g_p(){
+        getEmp();
+        basicpay = Integer.valueOf(inh.lines[ratio1.i++].split(" ")[0]);
+        hra =  Integer.valueOf(inh.lines[ratio1.i++].split(" ")[0]);
+        da =  Integer.valueOf(inh.lines[ratio1.i++].split(" ")[0]);
+        pf =  Integer.valueOf(inh.lines[ratio1.i++].split(" ")[0]);
+        salary = basicpay+hra+da-pf;
+    }
+    void d_p(){
+        System.out.println("Name: "+e_name);
+        System.out.println("Number: "+emp);
+        System.out.println("Designation: "+desgn);
+        System.out.println("Monthly Salary: "+salary);
+    }
+}
+
+class temp_emp extends employee{
+    int consolpay;
+    static int scanratio1;
+
+    public void g_p1(){
+        getEmp();
+        consolpay =  Integer.valueOf(inh.lines[ratio1.i++].split(" ")[0]);;
+    }
+    public void d_p2(){
+        System.out.println("Name: "+e_name);
+        System.out.println("Number: "+emp);
+        System.out.println("Designation: "+desgn);
+        System.out.println("Monthly Salary: "+consolpay);
+    }
+}
+public class inh {
+    static String lines[];
+    static{
+        lines = new String[11];
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        for(int i=0; i<11; i++)
+        {
+            lines[i] = sc.nextLine();
+        }
+        
+
+        perma_emp p = new perma_emp();
+        temp_emp t = new temp_emp();
+        p.g_p();
+        t.g_p1();
+        p.d_p();
+        t.d_p2();
+    }
+}
+//Inheritance - II
+import java.util.*;
+class Vehicle{
+Scanner s=new Scanner(System.in); int mileage = s.nextInt();
+int price = s.nextInt();
+}
+class Car extends Vehicle{
+int ownershipcost=s.nextInt(); int warranty=s.nextInt();
+int seating_capacity=s.nextInt();
+String fueltype=s.next();
+}
+class Bike extends Vehicle{
+int cyclinders=s.nextInt(); String coolingtype=s.next(); int
+gears=s.nextInt();
+String wheeltype=s.next(); int tanksize=s.nextInt();
+}
+class Audi extends Car{ String model=s.next(); void display(){
+System.out.println("model type is "+model);
+System.out.println("ownersip cost is Rs "+ownershipcost);
+System.out.println("warranty is "+warranty+"years");
+System.out.println("seating capacity is "+seating_capacity);
+System.out.println("fuel type is "+fueltype); 
+System.out.println("mileage is "+mileage+"kmpl");
+System.out.println("price is Rs "+price);
+}
+}
+class Ford extends Car{
+String model=s.next(); void display(){
+System.out.println("model type is "+model);
+System.out.println("ownersip cost is Rs "+ownershipcost);
+System.out.println("warranty is "+warranty+"years");
+System.out.println("seating capacity is "+seating_capacity);
+System.out.println("fuel type is "+fueltype);
+System.out.println("mileage is "+mileage+"kmpl");
+System.out.println("price is Rs "+price);
+}
+}
+class Bajaj extends Bike{
+String type=s.next();
+void display(){ System.out.println("Type is "+type);
+System.out.println("mileage is "+mileage); System.out.println("price
+is Rs "+price); System.out.println("no. of cyclinders "+cyclinders);
+System.out.println("no. of gears "+gears);
+System.out.println("cooling type is "+coolingtype);
+System.out.println("wheel type is "+wheeltype);
+System.out.println("tank size is "+tanksize+"inches");
+} }
+class TVS extends Bike{
+String type=s.next();
+void display(){ System.out.println("Type is "+type);
+System.out.println("mileage is "+mileage); System.out.println("price
+is Rs "+price); System.out.println("no. of cyclinders "+cyclinders);
+System.out.println("no. of gears "+gears);
+System.out.println("cooling type is"+coolingtype); 
+System.out.println("wheel type is "+wheeltype);
+System.out.println("tank size is "+tanksize+"inches");
+} }
+public class Main{
+public static void main(String args[]){
+Ford f=new Ford(); Audi a=new Audi(); Bajaj b=new Bajaj(); TVS
+t=new TVS(); f.display();
+a.display(); b.display(); t.display();
+} }
+//Run time polymorphism - Interface
+
+import java.util.*;
+import java.lang.Double;
+interface geometricobject{
+    void getarea();
+    void getperimeter();
+}
+
+class circle implements geometricobject{
+    double r;
+    circle(double r){
+        this.r = r;
+    }
+    void tostring(){
+        System.out.printf("Circle[radius=%f]\n",r);
+    }
+    public void getarea(){
+        System.out.println("area of circle is "+3.14*r*r);
+    }
+    public void getperimeter(){
+        System.out.println("perimeter of circle is "+2*3.14*r);
+    }
+}
+class rectangle implements geometricobject{
+    double width,length;
+    rectangle(double  width,double length){
+        this.width = width;
+        this.length = length;
+    }
+    void tostring(){
+        System.out.printf("rectangle[width=%f,length=%f]\n",width,length);
+    }
+    public void getarea(){
+        System.out.println("area of rectangle is "+width*length);
+    }
+    public void getperimeter(){
+        
+        System.out.printf("perimeter of circle is %f\n" ,2*(width+length));
+    }
+}
+public class inter{
+    public static void main(String args[]){
+        Scanner a =new Scanner(System.in);
+        System.out.println("enter a number of geometric order");
+        int n = a.nextInt();
+        System.out.println("number of geometric object is "+n);
+        rectangle rec = new rectangle(15.00,20.00);
+        rec.tostring();
+        rec.getarea();
+        rec.getperimeter();
+        circle cir = new circle(5.00);
+        cir.tostring();
+        cir.getarea();
+        cir.getperimeter();
+    }
+}
+//Handling Exception 1
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class err{
+    public static void main(String[] args){
+        double a,b,c;
+        String ch[] = new String[10];
+        try{
+            Scanner s = new Scanner(System.in);
+            a = s.nextDouble();
+            b = s.nextDouble();
+            c = a/b;
+            System.out.printf("%.0f",c);
+        }
+        catch(InputMismatchException e){
+            System.out.println("Enter only numbers");
+        }
+    }
+}
+//Handling Exception 2
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class exception2 {
+    public static void main(String[] args){
+        int a = 0,b=0,c=0,d=0,e=0,f;
+        int count1 = 5, count2=0;
+        Scanner s = new Scanner(System.in);
+        try{
+            a = s.nextInt();
+        }
+        catch(InputMismatchException ex){
+            s.nextLine();
+            count2++;
+        }
+        try{
+            b = s.nextInt();
+        }
+        catch(InputMismatchException ex){
+            s.nextLine();
+            count2++;
+        }
+        try{
+            c = s.nextInt();
+        }
+        catch(InputMismatchException ex){
+            s.nextLine();
+            count2++;
+        }
+        try{
+            d = s.nextInt();
+        }
+        catch(InputMismatchException ex){
+            s.nextLine();
+            count2++;
+        }
+        try{
+            e = s.nextInt();
+        }
+        catch(InputMismatchException ex){
+            s.nextLine();
+            count2++;
+        }
+        finally {
+            f = a+b+c+d+e;
+            System.out.println("Count of Valid Numbers: "+(count1-count2));
+            System.out.println("Sum: "+f);
+            
+        }
+    }
+}
+
+//Handling Exception 3
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class err {
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int a=0;
+        int i=1;
+        while(true){
+            try{
+                a = s.nextInt();
+                System.out.println("The number is: "+a);
+                break;
+            }
+            catch(InputMismatchException ex){
+                s.nextLine();
+            }
+        }
+    }
+}
+
+
+//package
+
+
+package employee;
+public class Emp{
+ String name,empid, category;
+ int bpay;
+ double hra,da,npay,pf,grosspay,incometax,allowance;
+ public Emp(String n, String id, String c, int b)
+ {
+   name = n;
+   empid = id;
+   category = c;
+   bpay = b;
+ }
+ public void call()
+ {
+
+   da = bpay*0.05;
+   hra = bpay*0.09;
+   pf = bpay*0.11;
+   allowance = bpay*0.10;
+   grosspay = bpay+da+hra+allowance-pf;
+   incometax = 0.75*grosspay;
+   npay = grosspay- incometax;
+  }
+
+ public void display()
+ {
+   System.out.println("/n/n Employee Details");
+   System.out.println("/n/n Name:"+name);
+   System.out.println("/n/n Empid:"+empid);  
+   System.out.println("/n/n Category:"+category);      
+   System.out.println("/n/n bpay:"+bpay);
+   System.out.println("/n/n da:"+da);
+   System.out.println("/n/n hra:"+hra);
+   System.out.println("/n/n pf:"+pf);
+   System.out.println("/n/n all:"+allowance);
+   System.out.println("/n/n gs:"+grosspay);
+   System.out.println("/n/n Incometax:"+incometax);
+   System.out.println("/n/n npay:"+npay);
+   }
+ }
+
+//file handling/ io strem
+File Operations in Java
+Basically, you can perform four operations on a file. They are as follows:
+
+Create a File
+Get File Information
+Write To a File
+Read from a File
+Now, let’s get into the details of each of these operations
+
+1. Create a File
+In this case, to create a file you can use the createNewFile() method. This method returns true if the file was successfully created, and false if the file already exists.
+
+Let’s see an example of how to create a file in Java.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+package FileHandling;
+ 
+ // Import the File class
+import java.io.File;
+ 
+// Import the IOException class to handle errors
+import java.io.IOException; 
+ 
+public class CreateFile {
+public static void main(String[] args) {
+try {
+// Creating an object of a file
+File myObj = new File("D:FileHandlingNewFilef1.txt"); 
+if (myObj.createNewFile()) {
+System.out.println("File created: " + myObj.getName());
+} else {
+System.out.println("File already exists.");
+}
+} catch (IOException e) {
+System.out.println("An error occurred.");
+e.printStackTrace();
+}
+}
+}
+In the above code, a file named NewFilef1 gets created in the specified location. If there is an error, then it gets handled in the catch block. Let’s check the output on executing the above code:
+
+Output:
+
+1
+File created: NewFilef1.txt
+Having understood this, let’s see how to get File information.
+
+2. Get File information
+
+Let’s see how to get file information using various methods with the help of below example code
+
+Programming & Frameworks Training
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+package FileHandling;
+import java.io.File; // Import the File class
+ 
+public class FileInformation {
+public static void main(String[] args) {
+ // Creating an object of a file
+File myObj = new File("NewFilef1.txt");
+if (myObj.exists()) {
+ // Returning the file name
+System.out.println("File name: " + myObj.getName());
+ 
+// Returning the path of the file 
+System.out.println("Absolute path: " + myObj.getAbsolutePath());   
+ 
+// Displaying whether the file is writable
+System.out.println("Writeable: " + myObj.canWrite());  
+ 
+// Displaying whether the file is readable or not
+System.out.println("Readable " + myObj.canRead());  
+ 
+// Returning the length of the file in bytes
+System.out.println("File size in bytes " + myObj.length());  
+} else {
+System.out.println("The file does not exist.");
+}
+}
+}
+When you execute the above program, you will get the file information as shown in the output below:
+
+Output:
+
+1
+2
+3
+4
+5
+File name: NewFilef1.txt
+Absolute path: D:FileHandlingNewFilef1.txt
+Writable: true
+Readable true
+File size in bytes 52
+This is how you need to write a program to get the information of the specific file. Now let’s move further and see two more operations on the file. i.e. read and write operations.
+
+3. Write to a File
+
+In the following example, I have used the FileWriter class together with its write() method to write some text into the file. Let’s understand this with the help of a code.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+package FileHandling;
+ 
+// Import the FileWriter class
+import java.io.FileWriter; 
+ 
+// Import the IOException class to handle errors
+import java.io.IOException; 
+ 
+public class WriteToFile {
+public static void main(String[] args) {
+try {
+FileWriter myWriter = new FileWriter("D:FileHandlingNewFilef1.txt");
+ // Writes this content into the specified file
+myWriter.write(Java is the prominent programming language of the millenium!"); 
+ 
+// Closing is necessary to retrieve the resources allocated
+myWriter.close(); 
+System.out.println("Successfully wrote to the file.");
+} catch (IOException e) {
+System.out.println("An error occurred.");
+e.printStackTrace();
+}
+}
+}
+Output:
+
+1
+Successfully wrote to the file
+When you run the file, the above text, “Java is the prominent programming language of the millennium!” will be entered in the file that you have created. You can cross check it by opening the file in the specified location.
+
+Now let’s move further and understand the last operation on the file, i.e. Read a file
+
+4. Read from a File
+In the following example, I have used the Scanner class to read the contents of the text file.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+package FileHandling;
+ 
+// Import the File class
+import java.io.File; 
+ 
+// Import this class to handle errors
+import java.io.FileNotFoundException; 
+ 
+// Import the Scanner class to read text files
+import java.util.Scanner; 
+ 
+public class ReadFromFile {
+public static void main(String[] args) {
+try {
+// Creating an object of the file for reading the data
+File myObj = new File("D:FileHandlingNewFilef1.txt");  
+Scanner myReader = new Scanner(myObj);
+while (myReader.hasNextLine()) {
+String data = myReader.nextLine();
+System.out.println(data);
+}
+myReader.close();
+} catch (FileNotFoundException e) {
+System.out.println("An error occurred.");
+e.printStackTrace();
+}
+}
+}
+When you execute the above program, it will display the content present in the given file.
+
+Output:
+1
+Java is the prominent programming language of the millennium
