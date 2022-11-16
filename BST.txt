@@ -201,3 +201,29 @@ int main()
    while(esc!=5);
    return 0;
 }
+*/
+int Height(struct Tree* T)
+{
+   if (T == NULL)
+       return 0;
+   else {
+       int lheight = Height(T->left);
+       int rheight = Height(T->right);
+ 
+       if (lheight > rheight)
+           return (lheight + 1);
+       else
+           return (rheight + 1);
+   }
+}
+ 
+int countLeaf(struct Tree* T)
+{
+ if(T == NULL)      
+   return 0;
+ if(T->left == NULL && T->right==NULL)     
+   return 1;           
+ else
+   return countLeaf(T->left)+countLeaf(T->right);     
+}
+*/
