@@ -1,0 +1,127 @@
+#include<stdio.h>
+#include<string.h>
+ 
+void quicksortInt(int arr[],int low,int high)
+{
+   int pivot=high;
+   int i=low;
+   int j= high-1;
+   while(i<j)
+   {
+       while(arr[i]<arr[pivot])
+       {
+           i++;
+       }
+       while(arr[j]>=arr[pivot])
+       {
+       j--;
+       }
+       if(i<j)
+       {
+       int temp = arr[i];
+       arr[i]=arr[j];
+       arr[j]=temp;
+       }
+       int temp2=arr[i];
+       arr[i]= arr[pivot];
+       arr[pivot]=temp2;
+ 
+       if(low<j)
+       {
+           quicksortInt(arr,low,j);
+       }
+       if(i<high)
+       {
+           quicksortInt(arr,i,high);
+       }
+   }
+}
+ 
+void displayStrArr(char arr[][10], int size) {
+   for (int i = 0; i < size; i++)
+   {
+       printf("%s", arr[i]);
+   }
+   printf("\n");
+}
+ 
+void displayArr(int arr[], int size) {
+   for (int j = 0; j < size; j++)
+       printf("%d ", arr[j]);
+   printf("\n");
+}
+ 
+void quicksortString(char a[][10],int low ,int high)
+{
+   char *pivot;
+   int i=low;
+   int j=high;
+   pivot=a[(low+high)/2];
+ 
+   while (i<j)
+   {
+       while(strcmp(a[i],pivot)<0 && (i<high)){
+           i++;
+       }
+       while(strcmp(a[j],pivot)>0 && (j>low)){
+           j--;
+       }
+       char temp[10];
+       if(i<=j)
+       {
+           strcpy(temp,a[i]);
+           strcpy(a[i],a[j]);
+           strcpy(a[j],temp);
+           i++;
+           j--;
+       }
+   }
+   if(low<j){
+       quicksortString(a,low,j);
+   }
+   if(i<high){
+       quicksortString(a,i,high);
+   }
+}
+ 
+void main()
+{
+   int size;
+   int choice;
+   int pos;
+ 
+   printf("Enter size of array : ");
+   scanf("%d",&size);
+ 
+   char strArr[size][10];
+   int intArr[size];
+ 
+   printf("Enter 1 for Integer array or 2 for Character/String array:\n");
+   printf("Choice: ");
+   scanf("%d",&choice);
+ 
+   switch (choice){
+   case 1:
+   printf("\nSort integer array\n");
+   for(pos=0;pos<size;pos++){
+       scanf("%d",&intArr[pos]);
+   }
+   quicksortInt(intArr,0,size-1);
+   printf("\nAfter sorting\n");
+   displayArr(intArr,size);
+   break;
+   default:
+   printf("\nInvalid choice");
+ 
+   case 2:
+   printf("\nSort string array\n");
+   for(pos=0;pos<size;pos++){
+       scanf("%s",strArr[pos]);
+   }
+   quicksortString(strArr,0,size-1);
+   printf("\nAfter sorting\n");
+   displayStrArr(strArr,size);
+   break;
+   }
+ 
+}

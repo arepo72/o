@@ -1,0 +1,79 @@
+#include <stdio.h>
+void bubbleSortInt(int arr[], int n)
+{
+   int i, j,temp;
+   for (i = 0; i < n - 1; i++)
+       for (j = 0; j < n - i - 1; j++)
+       if(arr[j]>arr[j+1]) {
+           temp = arr[j];
+           arr[j]=arr[j+1];
+           arr[j+1]=temp;
+    }
+}
+void bubbleSortStr(char arr[],int size)
+{
+   int i,j;
+   char temp[20];
+ 
+   for(i=0; i<size-1; i++)
+   {
+       for (j = 0; j < size- i - 1; j++){
+            if(strcmp(arr[j],arr[j+1])<0)
+           {
+               strcpy(temp,arr[j+1]);
+               strcpy(arr[j],arr[j+1]);
+               strcpy(arr[j+1],temp);
+           }
+       }
+   }
+}
+ 
+void displayStrArr(char arr[][10], int size) {
+   for (int i = 0; i < size; i++)
+   {
+       printf("%s", arr[i]);
+   }
+   printf("\n");
+}
+ 
+void displayArr(int arr[], int size) {
+   for (int j = 0; j < size; j++)
+       printf("%d ", arr[j]);
+   printf("\n");
+}
+ 
+int main()
+{
+   int pos;
+   int choice;
+   printf("Enter size of array : ");
+   int size;
+   int intArr[size];
+ 
+   printf("Enter 1 for Integer array or 2 for Character/String array:\n");
+   printf("Choice: ");
+   scanf("%d",&choice);
+   switch (choice){
+   case 1:
+       printf("\nSort integer array\n");
+       for(p=0;p<size;p++){
+           scanf("%d",&intArr[p]);
+       }
+       bubbleSortInt(intArr,size-1);
+       printf("\nAfter sorting\n");
+       displayArr(intArr,size);
+       break;
+   case 2:
+       printf("\nSort string array\n");
+       for(pos=0;pos<size;pos++){
+           scanf("%s",strArr[pos]);
+       }
+       bubbleSortStr(strArr,size)
+       printf("\nAfter sorting\n");
+       displayStrArr(strArr,size);
+       break;
+ 
+   default:
+       printf("\nInvalid choice");
+   }
+}

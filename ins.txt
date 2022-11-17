@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include<string.h>
+ void InsertionSortInt(int arr[], int n)
+{
+   int i, key, j;
+   for (i = 1; i < n; i++) {
+       key = arr[i];
+       j = i - 1;
+        while (j >= 0 && arr[j] > key)
+       {
+           arr[j + 1] = arr[j];
+           j = j - 1;
+       }
+       arr[j + 1] = key;
+   }
+}
+void InsertionSortStr(char arr[],int size)
+{
+   int i,j;
+ 
+ 
+   for(i=1; i<size; i++)
+   {
+       strcpy(x,num[i]);
+       j=i-1;
+       while(j>=0)
+       {
+           if(strcmpi(x,num[j])<0)
+           {
+               strcpy(num[j+1],num[j]);
+           }
+           else
+           {
+               break;
+           }
+           j=j-1;
+       }
+       strcpy(num[j+1],x);
+   }
+}
+ 
+ 
+void displayStrArr(char arr[][10], int size) {
+   for (int i = 0; i < size; i++)
+   {
+       printf("%s", arr[i]);
+   }
+   printf("\n");
+}
+ 
+void displayArr(int arr[], int size) {
+   for (int j = 0; j < size; j++)
+       printf("%d ", arr[j]);
+   printf("\n");
+}
+ 
+int main()
+{
+   int p;
+   int choice;
+   printf("Enter size of array : ");
+   int size;
+   int intArr[size];
+ 
+   printf("Enter 1 for Integer array or 2 for Character/String array:\n");
+   printf("Choice: ");
+   scanf("%d",&choice);
+   switch (choice){
+   case 1:
+       printf("\nSort integer array\n");
+       for(p=0;p<size;p++){
+           scanf("%d",&intArr[p]);
+       }
+       InsertionSortInt(intArr,size-1);
+       printf("\nAfter sorting\n");
+       displayArr(intArr,size);
+       break;
+   case 2:
+       printf("\nSort string array\n");
+       for(pos=0;pos<size;pos++){
+           scanf("%s",strArr[pos]);
+       }
+       InsertionSortString(strArr,0,size-1);
+       printf("\nAfter sorting\n");
+       displayStrArr(strArr,size);
+       break;
+   }
+   default:
+       printf("\nInvalid choice");
+   }
+   return 0;
+}

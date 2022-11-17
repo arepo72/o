@@ -1,0 +1,143 @@
+#include<stdio.h>
+#include<string.h>
+
+// #include<stdlib.h> // Implicit declaration error-malloc
+#include<malloc.h>
+ 
+#define MAX 20
+ 
+ 
+void mergeStr(char* arr[],int low,int mid,int high)
+{
+   int L= mid-low+1;
+   int R= high-mid;
+ 
+   char** Left=malloc(sizeof(char *)*L);
+   char** Right=malloc(sizeof(char *)*R);
+   int i;
+   for(i=0;i<L;i++)
+   {
+   Left[i]=malloc(sizeof(arr[low+i]));
+   strcpy(Left[i],arr[low+i]);
+   }
+   for(i=0;i<R;i++)
+   {
+   Right[i]=malloc(sizeof(arr[mid+i+1]));
+   strcpy(Right[i],arr[mid+i+1]);
+   }
+   int j=0,k;
+   i=0;
+   k=low;
+   while(i<L&&j<R)
+   {
+   if(strcmp(Left[i],Right[j])<0)strcpy(arr[k++],Left[i++]);
+   else strcpy(arr[k++],Right[j++]);
+   }
+   while(i<L)strcpy(arr[k++],Left[i++]);
+   while(j<R)strcpy(arr[k++],Right[j++]);
+ 
+}
+ 
+void mergeSortStr(char* arr[],int low,int high)
+{
+   if(low<high)
+   {
+   int mid=(low+high)/2;
+   mergeSortStr(arr,low,mid);
+   mergeSortStr(arr,mid+1,high);
+   mergeStr(arr,low,mid,high);
+   }
+}
+ 
+void mergeInt(int array[],int first,int mid,int last){
+   int len1=mid-first+1;
+   int len2 = last-mid;
+   int i=0,j=0,k=first;
+ 
+   int leftarr[len1];
+   int rightarr[len2];
+   for(int i=0;i<len1;i++){
+       leftarr[i]=array[first+i];
+   }
+   for(int j=0;j<len2;j++){
+       rightarr[j]=array[mid+1+j];
+   }
+   while(i<len1 && j<len2){
+       if(leftarr[i]<=rightarr[j]){
+           array[k]=leftarr[i];
+           i++;
+       }
+   else{
+       array[k]=rightarr[j];
+       j++;
+       }
+   k++;
+   }
+   while(i<len1){
+       array[k]=leftarr[i];
+       i++;k++;
+   }
+   while(j<len2){
+       array[k]=rightarr[j];
+       j++;k++;
+   }
+ 
+ 
+}
+void mergeSortInt(int arr[],int l,int h){
+   if(l<h){
+       int m=(l+(h-1))/2;
+       mergeSortInt(arr,l,m);
+       mergeSortInt(arr,m+1,h);
+       mergeInt(arr,l,m,h);
+   }
+}
+ 
+void displayIntArr(int arr[], int size) {
+   for (int i = 0; i < size; i++)
+       printf("%d ", arr[i]);
+       printf("\n");
+}
+void main()
+{
+   int p;
+   int choice;
+   printf("Enter size of array : ");
+   int size;
+   scanf("%d",&size);
+   int array[size];
+   printf("Enter 1 for Integer array or 2 for Character/String array:\n");
+   printf("Choice: ");
+   scanf("%d",&choice);
+ 
+ 
+   switch (choice){
+   case 1:
+       printf("\nSort integer array\n");
+       for(p=0;p<size;p++){
+       scanf("%d",&array[p]);
+       }
+ 
+       mergeSortInt(array,0,size-1);
+       printf("Sorted array: \n");
+       displayIntArr(array, size);
+       break;
+   case 2:
+       printf("\nTo Sort :\n Array of Strings\n");
+       char** arr= malloc(sizeof(char *)* size);
+       printf("\nEnter elements of the array: \n");
+       int i;
+       for(i=0;i<size;i++)
+       {
+       arr[i]=malloc(sizeof(char)*MAX);//Takes in String array using malloc
+       // printf("\nEnter String: ");
+       scanf("%s",arr[i]);
+       }
+       mergeSortStr(arr,0,size-1);
+       printf("\nArray after sorting is: \n");
+       for(i=0;i<size;i++)printf("%s ",arr[i]);
+       break;
+   default:
+      printf("\nInvalid choice");
+   }
+}
